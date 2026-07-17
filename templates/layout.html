@@ -20,12 +20,7 @@
   <link rel="stylesheet" th:href="${#theme.assets('/css/monokai-sublime.min.css')}" />
   <script th:src="${#theme.assets('/js/highlight.min.js')}"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <style th:inline="css">
-    @font-face {
-      font-family: "JetBrainsMono-ExtraBold";
-      src: url(/*[[${#theme.assets('/JetBrainsMono-ExtraBold.woff2')}]]*/ "") format("woff");
-    }
-  </style>
+  <style th:utext="'@font-face { font-family: \"JetBrainsMono-ExtraBold\"; src: url(\"' + ${#theme.assets('/JetBrainsMono-ExtraBold.woff2')} + '\") format(\"woff\"); }'"></style>
 </th:block>
 
 <!-- 页脚 -->
