@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <title th:text="${site.title}">site.title</title>
+  <th:block th:replace="~{layout :: common-head}"></th:block>
+  <title th:text="${site.title}"></title>
 </head>
 <body>
-<h1>诊断页面 - index.html 自包含版本</h1>
-<p>site.title = <span th:text="${site.title}">?</span></p>
-<p>site.url = <span th:text="${site.url}">?</span></p>
-<p>theme.assets.url = <span th:text="${theme.assets.url}">?</span></p>
-<p>posts.total = <span th:text="${posts.total}">?</span></p>
-<p>posts.items.size = <span th:text="${posts.items != null ? posts.items.size() : 0}">?</span></p>
-<th:block th:each="post : ${posts.items}">
-  <p>文章: <a th:href="${post.status.permalink}" th:text="${post.spec.title}">title</a></p>
-</th:block>
+<div class="root-container">
+  <header class="header-container">
+    <div class="post-image" th:style="|background-image:url(${theme.config.general.home_cover})|"></div>
+    <th:block th:replace="~{modules/nav :: nav}"></th:block>
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap" th:text="${site.title}"></h1>
+      </div>
+    </div>
+  </header>
+
+  <th:block th:replace="~{modules/post-list :: post-list}"></th:block>
+
+  <th:block th:replace="~{modules/pagination :: pagination(
+    context = '/',
+    prevUrl = ${posts.prevUrl},
+    nextUrl = ${posts.nextUrl},
+    totalPages = ${posts.totalPages},
+    page = ${posts.page},
+    hasPrevious = ${posts.hasPrevious()},
+    hasNext = ${posts.hasNext()}
+  )}"></th:block>
+
+  <th:block th:replace="~{layout :: body-tail}"></th:block>
+</div>
 </body>
 </html>

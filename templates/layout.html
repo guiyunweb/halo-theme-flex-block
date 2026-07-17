@@ -12,18 +12,18 @@
   <meta name="keywords" th:content="${site.seo?.keywords}" />
   <meta name="description" th:content="${site.seo?.description}" />
   <link rel="alternate" type="application/rss+xml" title="atom 1.0" th:href="${site.url + '/feed.xml'}" />
-  <link rel="stylesheet" th:href="${theme.assets.url + '/css/style.min.css'}" />
+  <link rel="stylesheet" th:href="${#theme.assets('/css/style.min.css')}" />
 </th:block>
 
 <!-- 文章/页面头部需要的代码高亮 CSS/JS + 字体 -->
 <th:block th:fragment="code-head">
-  <link rel="stylesheet" th:href="${theme.assets.url + '/css/monokai-sublime.min.css'}" />
-  <script th:src="${theme.assets.url + '/js/highlight.min.js'}"></script>
+  <link rel="stylesheet" th:href="${#theme.assets('/css/monokai-sublime.min.css')}" />
+  <script th:src="${#theme.assets('/js/highlight.min.js')}"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <style th:inline="css">
     @font-face {
       font-family: "JetBrainsMono-ExtraBold";
-      src: url([[${theme.assets.url}]] + "/JetBrainsMono-ExtraBold.woff2") format("woff");
+      src: url(/*[[${#theme.assets('/JetBrainsMono-ExtraBold.woff2')}]]*/ "") format("woff");
     }
   </style>
 </th:block>
@@ -56,5 +56,5 @@
     </svg>
   </div>
   <th:block th:replace="~{layout :: site-footer}"></th:block>
-  <script th:src="${theme.assets.url + '/js/script.js'}"></script>
+  <script th:src="${#theme.assets('/js/script.js')}"></script>
 </th:block>
