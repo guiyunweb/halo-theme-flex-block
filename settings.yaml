@@ -1,58 +1,53 @@
-﻿# configurations
-# 详情请参考：https://halo.run/develop/theme.html#settings-yaml
-genernal:
-  label: 基本设置
-  items:
-    home_cover:
-      name: home_cover
-      label: 首页背景
-      type: attachment
-      default: https://image.guiyunweb.com/2021/84306692_p0_master1200_1608708448480_1625562784578.jpg?imageMogr2/format/webp/interlace/1/quality/090
-    archives_cover:
-      name: archives_cover
-      label: 归档背景
-      type: attachment
-      default: https://cdn.jsdelivr.net/gh/xzzai/static@master/uPic/default-bg.jpg
-    link_cover:
-      name: link_cover
-      label: 友链背景
-      type: attachment
-      default: https://cdn.jsdelivr.net/gh/xzzai/static@master/uPic/default-bg.jpg
-    tag_cover:
-      name: link_cover
-      label: 标签背景
-      type: attachment
-      default: https://cdn.jsdelivr.net/gh/xzzai/static@master/uPic/default-bg.jpg
-    footer:
-      name: footer
-      label: 备案号
-      type: text
-      placeholder: '备案号'
-author:
-  label: 个人信息
-  items:
-    author_avatar:
-      name: author_avatar
-      label: 个人头像
-      type: attachment
-      default: https://image.guiyunweb.com/2021/84306692_p0_master1200_1608708448480_1625562784578.jpg?imageMogr2/format/webp/interlace/1/quality/090
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: flex-block-setting
+spec:
+  forms:
+    - group: general
+      label: 基本设置
+      formSchema:
+        - $formkit: attachment
+          name: home_cover
+          label: 首页背景
+          value: https://image.guiyunweb.com/2021/84306692_p0_master1200_1608708448480_1625562784578_1625565770497.jpg?imageMogr2/format/webp/interlace/1/quality/090
+        - $formkit: attachment
+          name: archives_cover
+          label: 归档背景
+          value: https://cdn.jsdelivr.net/gh/xzzai/static@master/uPic/default-bg.jpg
+        - $formkit: attachment
+          name: link_cover
+          label: 友链背景
+          value: https://cdn.jsdelivr.net/gh/xzzai/static@master/uPic/default-bg.jpg
+        - $formkit: attachment
+          name: tag_cover
+          label: 标签背景
+          value: https://cdn.jsdelivr.net/gh/xzzai/static@master/uPic/default-bg.jpg
+        - $formkit: text
+          name: footer
+          label: 备案号
+          placeholder: 备案号
 
-link:
-  label: 友链配置
-  items:
-    link_title:
-      name: link_title
-      label: 站点名称
-      type: text
-    link_url:
-      name: link_url
-      label: 站点地址
-      type: text
-    link_describe:
-      name: link_describe
-      label: 站点描述
-      type: text
-    link_icon:
-      name: link_icon
-      label: 站点logo
-      type: text
+    - group: author
+      label: 个人信息
+      formSchema:
+        - $formkit: attachment
+          name: author_avatar
+          label: 个人头像
+          value: https://image.guiyunweb.com/2021/84306692_p0_master1200_1608708448480_1625562784578_1625565770497.jpg?imageMogr2/format/webp/interlace/1/quality/090
+
+    - group: link
+      label: 友链配置
+      formSchema:
+        - $formkit: text
+          name: link_title
+          label: 站点名称
+        - $formkit: text
+          name: link_url
+          label: 站点地址
+        - $formkit: text
+          name: link_describe
+          label: 站点描述
+        - $formkit: text
+          name: link_icon
+          label: 站点logo

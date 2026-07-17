@@ -1,12 +1,21 @@
-﻿# 详情请参考：https://halo.run/develop/theme.html#theme-yaml
-
-id: flex-block
-name: flex-block
-author:
-  name: Guiyunweb
-  website: https://guiyunweb.com
-description: flex-block主题修改
-logo: https://image.guiyunweb.com/2021/84306692_p0_master1200_1608708448480_1625562784578_1625565770497.jpg
-website: https://github.com/guiyunweb/halo-theme-flex-block
-repo: https://github.com/guiyunweb/halo-theme-flex-block
-version: 2.0
+apiVersion: theme.halo.run/v1alpha1
+kind: Theme
+metadata:
+  name: flex-block
+spec:
+  displayName: flex-block
+  author:
+    name: Guiyunweb
+    website: https://guiyunweb.com
+  description: flex-block 主题（Halo 2.x 版本）
+  logo: https://image.guiyunweb.com/2021/84306692_p0_master1200_1608708448480_1625562784578_1625565770497.jpg
+  homepage: https://github.com/guiyunweb/halo-theme-flex-block
+  repo: https://github.com/guiyunweb/halo-theme-flex-block
+  issues: https://github.com/guiyunweb/halo-theme-flex-block/issues
+  settingName: flex-block-setting
+  configMapName: flex-block-configMap
+  version: 3.0.0
+  requires: ">=2.20.0"
+  license:
+    - name: GPL-3.0
+      url: https://github.com/guiyunweb/halo-theme-flex-block/blob/main/LICENSE

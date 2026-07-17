@@ -1,0 +1,16 @@
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <a th:if="${not #strings.isEmpty(theme.config.general.footer)}"
+       th:href="@{https://beian.miit.gov.cn/}"
+       target="_blank"
+       th:text="${theme.config.general.footer}"></a>
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+    <p>Powered by <a href="https://halo.run/" target="_blank" rel="noopener noreferrer">Halo</a>
+      Theme - <a th:href="${theme.spec.repo}" target="_blank" rel="noopener noreferrer author" th:text="${theme.spec.displayName}"></a>
+    </p>
+  </div>
+</footer>

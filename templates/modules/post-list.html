@@ -1,0 +1,30 @@
+<div class="body-container">
+  <div class="content-container layout-block article-list">
+    <div class="article-item layout-padding" th:each="post : ${posts.items}">
+      <article class="card-container article-card content-padding--large soft-size--large soft-style--box">
+        <div class="card-cover"
+             background-image-lazy
+             th:attr="data-img=${post.spec.cover}"
+             th:style="|background-image:url(${post.spec.cover})|"></div>
+        <div class="card-text">
+          <a th:href="${post.status.permalink}" itemprop="url">
+            <h2 class="card-text--title" th:text="${post.spec.title}"></h2>
+          </a>
+          <div class="card-text--row">
+            <span>发布于</span>
+            <time class="" th:datetime="${post.spec.publishTime}" itemprop="datePublished"
+                  th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
+          </div>
+          <ul class="wrap-list dark">
+            <li th:each="tag : ${post.tags}">
+              <a class="article-category-dark" th:href="${tag.status.permalink}" th:text="|🏷️ ${tag.spec.displayName}|"></a>
+            </li>
+          </ul>
+          <div class="card-text--row" style="padding-top: 10px">
+            已有<span th:text="${post.stats?.visit ?: 0}"></span>人浏览
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

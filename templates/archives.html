@@ -1,0 +1,34 @@
+<include src="layout.html">
+  <template name="head">
+    <title th:text="|归档 - ${site.title}|"></title>
+  </template>
+
+  <template name="hero">
+    <th:block th:replace="~{modules/header :: header(isHome = false, cover = ${theme.config.general_archives_cover})}">
+      <include src="modules/nav.html" />
+      <div class="header-content">
+        <div class="post-text layout-block layout-padding">
+          <h1 class="title-wrap">归档</h1>
+          <h2 class="title-sub-wrap">共有<span th:text="${postFinder.count()}">0</span>篇文章</h2>
+        </div>
+      </div>
+    </th:block>
+  </template>
+
+  <div class="body-container">
+    <div class="layout-block post-container">
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <th:block th:each="archive : ${archives.items}">
+          <th:block th:each="month : ${archive.months}">
+            <h3 th:text="|${archive.year}-${month.month}|"></h3>
+            <ul>
+              <li th:each="post : ${month.posts}">
+                <a th:href="${post.status.permalink}" th:text="${post.spec.title}"></a>
+              </li>
+            </ul>
+          </th:block>
+        </th:block>
+      </section>
+    </div>
+  </div>
+</include>

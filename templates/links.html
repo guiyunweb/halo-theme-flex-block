@@ -1,0 +1,29 @@
+<include src="layout.html">
+  <template name="head">
+    <title th:text="|友情链接 - ${site.title}|"></title>
+  </template>
+
+  <template name="hero">
+    <th:block th:replace="~{modules/header :: header(isHome = false, cover = ${theme.config.general_link_cover})}">
+      <include src="modules/nav.html" />
+      <div class="header-content">
+        <div class="post-text layout-block layout-padding">
+          <h1 class="title-wrap">友情链接</h1>
+          <h2 class="title-sub-wrap">友链</h2>
+        </div>
+      </div>
+    </th:block>
+  </template>
+
+  <div class="layout-block post-container">
+    <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+      <p>站点名称 | <span th:text="${theme.config.link_link_title}"></span></p>
+      <p>站点地址 | <a th:href="${theme.config.link_link_url}" th:text="${theme.config.link_link_url}"></a></p>
+      <p>站点描述 | <span th:text="${theme.config.link_link_describe}"></span></p>
+      <p>站点图标 | <a th:href="${theme.config.link_link_icon}" target="_blank" rel="noopener" th:text="${theme.config.link_link_icon}"></a></p>
+      <p>想要添加友链在<b>关于</b>留言即可</p>
+    </section>
+  </div>
+
+  <include src="modules/links-list.html" />
+</include>

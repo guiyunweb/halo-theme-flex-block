@@ -1,0 +1,52 @@
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <article th:utext="${post.content.content}"></article>
+      </section>
+
+      <nav class="article-nav">
+        <div class="article-nav-item layout-padding" th:if="${prevPost != null}">
+          <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+            <div class="card-cover"
+                 th:if="${not #strings.isEmpty(prevPost.spec.cover)}"
+                 background-image-lazy
+                 th:attr="data-img=${prevPost.spec.cover}"
+                 th:style="|background-image:url(${prevPost.spec.cover})|"></div>
+            <div class="card-text">
+              <a th:href="${prevPost.status.permalink}" itemprop="url">
+                <h2 class="card-text--title text-ellipsis" th:text="${prevPost.spec.title}"></h2>
+              </a>
+              <div class="card-text--row">上一篇</div>
+            </div>
+          </article>
+        </div>
+        <div class="article-nav-item layout-padding" th:if="${nextPost != null}">
+          <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+            <div class="card-cover"
+                 th:if="${not #strings.isEmpty(nextPost.spec.cover)}"
+                 background-image-lazy
+                 th:attr="data-img=${nextPost.spec.cover}"
+                 th:style="|background-image:url(${nextPost.spec.cover})|"></div>
+            <div class="card-text">
+              <a th:href="${nextPost.status.permalink}" itemprop="url">
+                <h2 class="card-text--title text-ellipsis" th:text="${nextPost.spec.title}"></h2>
+              </a>
+              <div class="card-text--row">下一篇</div>
+            </div>
+          </article>
+        </div>
+      </nav>
+
+      <section class="page-message-container layout-padding" th:if="${haloCommentEnabled and post.spec.allowComment}">
+        <h2>评论</h2>
+        <div id="comment">
+          <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
+        </div>
+      </section>
+    </div>
+    <div class="widget-info">
+      <include src="modules/sidebar.html" />
+    </div>
+  </article>
+</div>

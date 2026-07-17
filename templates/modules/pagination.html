@@ -1,0 +1,9 @@
+<nav class="page-container" th:fragment="pagination(context, prevUrl, nextUrl, totalPages, page, hasPrevious, hasNext)"
+     th:if="${totalPages gt 1}">
+  <a class="extend prev" rel="prev" th:href="${prevUrl}" th:if="${hasPrevious}">ʚ</a>
+  <th:block th:each="i : ${#numbers.sequence(1, totalPages)}">
+    <span class="page-number current" th:if="${i == page}" th:text="${i}"></span>
+    <a class="page-number" th:if="${i != page}" th:href="|${context}page/${i}|" th:text="${i}"></a>
+  </th:block>
+  <a class="extend next" rel="next" th:href="${nextUrl}" th:if="${hasNext}">ɞ</a>
+</nav>

@@ -1,0 +1,7 @@
+<header
+  th:fragment="header(isHome, cover)"
+  th:class="${isHome ? 'header-container' : 'header-container post'}"
+>
+  <div class="post-image" th:style="|background-image:url(${cover})|"></div>
+  <slot />
+</header>

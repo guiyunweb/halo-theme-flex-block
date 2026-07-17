@@ -1,0 +1,21 @@
+<nav class="navbar" th:with="menu = ${menuFinder.getDefault()}">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a th:href="${site.url}" th:text="${site.title}"></a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        <li class="navbar-list-item" th:each="item : ${menu?.menuItems}">
+          <a th:href="${item.status.href}" th:target="${item.spec.target}" th:text="${item.spec.displayName}"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
