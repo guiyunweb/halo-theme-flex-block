@@ -1,40 +1,38 @@
-<include src="layout.html">
-  <template name="head">
-    <title th:text="|${post.spec.title} - ${site.title}|"></title>
-    <link rel="stylesheet" th:href="${theme.assets.url + '/source/css/monokai-sublime.min.css'}" />
-    <script th:src="${theme.assets.url + '/source/js/highlight.min.js'}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <style>
-      @font-face {
-        font-family: "JetBrainsMono-ExtraBold";
-        src: url(/*[[${theme.assets.url}]]*/ + "/source/JetBrainsMono-ExtraBold.woff2") format("woff");
-      }
-    </style>
-  </template>
-
-  <template name="hero">
-    <th:block th:replace="~{modules/header :: header(isHome = false, cover = ${post.spec.cover})}">
-      <include src="modules/nav.html" />
-      <div class="header-content">
-        <div class="post-text layout-block">
-          <div class="layout-margin">
-            <h1 class="title-wrap" th:text="${post.spec.title}"></h1>
-            <h2 class="title-sub-wrap">
-              <strong th:text="${post.owner.displayName}"></strong>
-              <span>发布于</span>
-              <time class="article-date" th:datetime="${post.spec.publishTime}" itemprop="datePublished"
-                    th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
-            </h2>
-            <ul class="wrap-list dark">
-              <li th:each="tag : ${post.tags}">
-                <a class="article-category-link" th:href="${tag.status.permalink}" th:text="|🏷️ ${tag.spec.displayName}|"></a>
-              </li>
-            </ul>
-          </div>
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{layout :: common-head}"></th:block>
+  <th:block th:replace="~{layout :: code-head}"></th:block>
+  <title th:text="|${post.spec.title} - ${site.title}|"></title>
+</head>
+<body>
+<div class="root-container">
+  <header class="header-container post">
+    <div class="post-image" th:style="|background-image:url(${post.spec.cover})|"></div>
+    <th:block th:replace="~{modules/nav}"></th:block>
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap" th:text="${post.spec.title}"></h1>
+          <h2 class="title-sub-wrap">
+            <strong th:text="${post.owner.displayName}"></strong>
+            <span>发布于</span>
+            <time class="article-date" th:datetime="${post.spec.publishTime}" itemprop="datePublished"
+                  th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
+          </h2>
+          <ul class="wrap-list dark">
+            <li th:each="tag : ${post.tags}">
+              <a class="article-category-link" th:href="${tag.status.permalink}" th:text="|🏷️ ${tag.spec.displayName}|"></a>
+            </li>
+          </ul>
         </div>
       </div>
-    </th:block>
-  </template>
+    </div>
+  </header>
 
-  <include src="modules/post-content.html" />
-</include>
+  <th:block th:replace="~{modules/post-content}"></th:block>
+
+  <th:block th:replace="~{layout :: body-tail}"></th:block>
+</div>
+</body>
+</html>

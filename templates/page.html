@@ -1,36 +1,30 @@
-<include src="layout.html">
-  <template name="head">
-    <title th:text="|${singlePage.spec.title} - ${site.title}|"></title>
-    <link rel="stylesheet" th:href="${theme.assets.url + '/source/css/monokai-sublime.min.css'}" />
-    <script th:src="${theme.assets.url + '/source/js/highlight.min.js'}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <style>
-      @font-face {
-        font-family: "JetBrainsMono-ExtraBold";
-        src: url(/*[[${theme.assets.url}]]*/ + "/source/JetBrainsMono-ExtraBold.woff2") format("woff");
-      }
-    </style>
-  </template>
-
-  <template name="hero">
-    <th:block th:replace="~{modules/header :: header(isHome = false, cover = ${singlePage.spec.cover})}">
-      <include src="modules/nav.html" />
-      <div class="header-content">
-        <div class="post-text layout-block">
-          <div class="layout-margin">
-            <h1 class="title-wrap" th:text="${singlePage.spec.title}"></h1>
-            <h2 class="title-sub-wrap">
-              <strong th:text="${singlePage.owner.displayName}"></strong>
-              <span>发布于</span>
-              <time class="article-date" th:datetime="${singlePage.spec.publishTime}" itemprop="datePublished"
-                    th:text="${#dates.format(singlePage.spec.publishTime, 'yyyy-MM-dd')}"></time>
-            </h2>
-            <ul class="wrap-list dark"></ul>
-          </div>
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{layout :: common-head}"></th:block>
+  <th:block th:replace="~{layout :: code-head}"></th:block>
+  <title th:text="|${singlePage.spec.title} - ${site.title}|"></title>
+</head>
+<body>
+<div class="root-container">
+  <header class="header-container post">
+    <div class="post-image" th:style="|background-image:url(${singlePage.spec.cover})|"></div>
+    <th:block th:replace="~{modules/nav}"></th:block>
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap" th:text="${singlePage.spec.title}"></h1>
+          <h2 class="title-sub-wrap">
+            <strong th:text="${singlePage.owner.displayName}"></strong>
+            <span>发布于</span>
+            <time class="article-date" th:datetime="${singlePage.spec.publishTime}" itemprop="datePublished"
+                  th:text="${#dates.format(singlePage.spec.publishTime, 'yyyy-MM-dd')}"></time>
+          </h2>
+          <ul class="wrap-list dark"></ul>
         </div>
       </div>
-    </th:block>
-  </template>
+    </div>
+  </header>
 
   <div class="body-container">
     <article class="content-container layout-block post-container">
@@ -47,8 +41,12 @@
         </section>
       </div>
       <div class="widget-info">
-        <include src="modules/sidebar.html" />
+        <th:block th:replace="~{modules/sidebar}"></th:block>
       </div>
     </article>
   </div>
-</include>
+
+  <th:block th:replace="~{layout :: body-tail}"></th:block>
+</div>
+</body>
+</html>

@@ -1,19 +1,21 @@
-<include src="layout.html">
-  <template name="head">
-    <title th:text="|归档 - ${site.title}|"></title>
-  </template>
-
-  <template name="hero">
-    <th:block th:replace="~{modules/header :: header(isHome = false, cover = ${theme.config.general_archives_cover})}">
-      <include src="modules/nav.html" />
-      <div class="header-content">
-        <div class="post-text layout-block layout-padding">
-          <h1 class="title-wrap">归档</h1>
-          <h2 class="title-sub-wrap">共有<span th:text="${postFinder.count()}">0</span>篇文章</h2>
-        </div>
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{layout :: common-head}"></th:block>
+  <title th:text="|归档 - ${site.title}|"></title>
+</head>
+<body>
+<div class="root-container">
+  <header class="header-container post">
+    <div class="post-image" th:style="|background-image:url(${theme.config.general.archives_cover})|"></div>
+    <th:block th:replace="~{modules/nav}"></th:block>
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap">归档</h1>
+        <h2 class="title-sub-wrap">共有<span th:text="${postFinder.count()}">0</span>篇文章</h2>
       </div>
-    </th:block>
-  </template>
+    </div>
+  </header>
 
   <div class="body-container">
     <div class="layout-block post-container">
@@ -31,4 +33,8 @@
       </section>
     </div>
   </div>
-</include>
+
+  <th:block th:replace="~{layout :: body-tail}"></th:block>
+</div>
+</body>
+</html>

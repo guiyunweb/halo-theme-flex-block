@@ -1,4 +1,4 @@
-<div class="body-container">
+<div class="body-container" xmlns:th="http://www.thymeleaf.org">
   <article class="content-container layout-block post-container">
     <div class="article-info">
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
@@ -38,7 +38,8 @@
         </div>
       </nav>
 
-      <section class="page-message-container layout-padding" th:if="${haloCommentEnabled and post.spec.allowComment}">
+      <section class="page-message-container layout-padding"
+               th:if="${haloCommentEnabled and post.spec.allowComment}">
         <h2>评论</h2>
         <div id="comment">
           <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
@@ -46,7 +47,7 @@
       </section>
     </div>
     <div class="widget-info">
-      <include src="modules/sidebar.html" />
+      <th:block th:replace="~{modules/sidebar}"></th:block>
     </div>
   </article>
 </div>

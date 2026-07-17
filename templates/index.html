@@ -1,20 +1,22 @@
-<include src="layout.html">
-  <template name="head">
-    <title th:text="${site.title}"></title>
-  </template>
-
-  <template name="hero">
-    <th:block th:replace="~{modules/header :: header(isHome = true, cover = ${theme.config.general_home_cover})}">
-      <include src="modules/nav.html" />
-      <div class="header-content">
-        <div class="post-text layout-block layout-padding">
-          <h1 class="title-wrap" th:text="${site.title}"></h1>
-        </div>
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{layout :: common-head}"></th:block>
+  <title th:text="${site.title}"></title>
+</head>
+<body>
+<div class="root-container">
+  <header class="header-container">
+    <div class="post-image" th:style="|background-image:url(${theme.config.general.home_cover})|"></div>
+    <th:block th:replace="~{modules/nav}"></th:block>
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap" th:text="${site.title}"></h1>
       </div>
-    </th:block>
-  </template>
+    </div>
+  </header>
 
-  <include src="modules/post-list.html" />
+  <th:block th:replace="~{modules/post-list}"></th:block>
 
   <th:block th:replace="~{modules/pagination :: pagination(
     context = '/',
@@ -24,5 +26,9 @@
     page = ${posts.page},
     hasPrevious = ${posts.hasPrevious()},
     hasNext = ${posts.hasNext()}
-  )}" />
-</include>
+  )}"></th:block>
+
+  <th:block th:replace="~{layout :: body-tail}"></th:block>
+</div>
+</body>
+</html>

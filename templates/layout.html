@@ -1,6 +1,9 @@
-<!doctype html>
-<html th:lang="${#locale.toLanguageTag()}">
-<head>
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<!-- 公共片段集合，由各页面通过 th:replace / th:insert 引入 -->
+
+<!-- <head> 公共部分：meta + 全局 CSS + RSS。extra 为页面传入的额外 head 内容 -->
+<th:block th:fragment="common-head">
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,14 +12,42 @@
   <meta name="keywords" th:content="${site.seo?.keywords}" />
   <meta name="description" th:content="${site.seo?.description}" />
   <link rel="alternate" type="application/rss+xml" title="atom 1.0" th:href="${site.url + '/feed.xml'}" />
-  <link rel="stylesheet" th:href="${theme.assets.url + '/source/css/style.min.css'}" />
-  <slot name="head" />
-</head>
-<body>
-<div class="root-container">
-  <slot name="hero" />
-  <slot />
+  <link rel="stylesheet" th:href="${theme.assets.url + '/css/style.min.css'}" />
+</th:block>
 
+<!-- 文章/页面头部需要的代码高亮 CSS/JS + 字体 -->
+<th:block th:fragment="code-head">
+  <link rel="stylesheet" th:href="${theme.assets.url + '/css/monokai-sublime.min.css'}" />
+  <script th:src="${theme.assets.url + '/js/highlight.min.js'}"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <style>
+    @font-face {
+      font-family: "JetBrainsMono-ExtraBold";
+      src: url(/*[[${theme.assets.url}]]*/ "/JetBrainsMono-ExtraBold.woff2") format("woff");
+    }
+  </style>
+</th:block>
+
+<!-- 页脚 -->
+<footer id="footer" class="footer" th:fragment="site-footer">
+  <div class="footer-container">
+    <a th:if="${not #strings.isEmpty(theme.config.general.footer)}"
+       href="https://beian.miit.gov.cn/"
+       target="_blank"
+       th:text="${theme.config.general.footer}"></a>
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+    <p>Powered by <a href="https://halo.run/" target="_blank" rel="noopener noreferrer">Halo</a>
+      Theme - <a th:href="${theme.spec.repo}" target="_blank" rel="noopener noreferrer author" th:text="${theme.spec.displayName}"></a>
+    </p>
+  </div>
+</footer>
+
+<!-- 返回顶部按钮 + 全局 JS -->
+<th:block th:fragment="body-tail">
   <div class="back-to-top-fixed soft-size--round soft-style--box">
     <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
@@ -24,10 +55,6 @@
       <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
     </svg>
   </div>
-
-  <include src="modules/footer.html" />
-</div>
-<script th:src="${theme.assets.url + '/source/js/script.js'}"></script>
-<script th:src="${theme.assets.url + '/source/js/post.js'}"></script>
-</body>
-</html>
+  <th:block th:insert="~{::site-footer}"></th:block>
+  <script th:src="${theme.assets.url + '/js/script.js'}"></script>
+</th:block>
