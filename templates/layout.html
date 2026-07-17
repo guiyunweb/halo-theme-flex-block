@@ -20,10 +20,10 @@
   <link rel="stylesheet" th:href="${theme.assets.url + '/css/monokai-sublime.min.css'}" />
   <script th:src="${theme.assets.url + '/js/highlight.min.js'}"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <style>
+  <style th:inline="css">
     @font-face {
       font-family: "JetBrainsMono-ExtraBold";
-      src: url(/*[[${theme.assets.url}]]*/ "/JetBrainsMono-ExtraBold.woff2") format("woff");
+      src: url([[${theme.assets.url}]] + "/JetBrainsMono-ExtraBold.woff2") format("woff");
     }
   </style>
 </th:block>
@@ -55,6 +55,6 @@
       <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
     </svg>
   </div>
-  <th:block th:insert="~{::site-footer}"></th:block>
+  <th:block th:replace="~{layout :: site-footer}"></th:block>
   <script th:src="${theme.assets.url + '/js/script.js'}"></script>
 </th:block>

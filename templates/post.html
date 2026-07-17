@@ -9,7 +9,7 @@
 <div class="root-container">
   <header class="header-container post">
     <div class="post-image" th:style="|background-image:url(${post.spec.cover})|"></div>
-    <th:block th:replace="~{modules/nav}"></th:block>
+    <th:block th:replace="~{modules/nav :: nav}"></th:block>
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
@@ -30,7 +30,7 @@
     </div>
   </header>
 
-  <th:block th:replace="~{modules/post-content}"></th:block>
+  <th:block th:replace="~{modules/post-content :: post-content}"></th:block>
 
   <th:block th:replace="~{layout :: body-tail}"></th:block>
 </div>

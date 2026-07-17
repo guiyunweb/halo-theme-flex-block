@@ -1,4 +1,4 @@
-<div class="body-container" xmlns:th="http://www.thymeleaf.org">
+<div class="body-container" th:fragment="post-content" xmlns:th="http://www.thymeleaf.org">
   <article class="content-container layout-block post-container">
     <div class="article-info">
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
@@ -47,7 +47,7 @@
       </section>
     </div>
     <div class="widget-info">
-      <th:block th:replace="~{modules/sidebar}"></th:block>
+      <th:block th:replace="~{modules/sidebar :: sidebar}"></th:block>
     </div>
   </article>
 </div>

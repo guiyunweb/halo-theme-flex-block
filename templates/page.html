@@ -9,7 +9,7 @@
 <div class="root-container">
   <header class="header-container post">
     <div class="post-image" th:style="|background-image:url(${singlePage.spec.cover})|"></div>
-    <th:block th:replace="~{modules/nav}"></th:block>
+    <th:block th:replace="~{modules/nav :: nav}"></th:block>
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
@@ -41,7 +41,7 @@
         </section>
       </div>
       <div class="widget-info">
-        <th:block th:replace="~{modules/sidebar}"></th:block>
+        <th:block th:replace="~{modules/sidebar :: sidebar}"></th:block>
       </div>
     </article>
   </div>

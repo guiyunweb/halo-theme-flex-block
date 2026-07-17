@@ -1,2 +1,4 @@
-<th:block th:replace="~{modules/widget-author}"></th:block>
-<th:block th:replace="~{modules/widget-tags}"></th:block>
+<th:block th:fragment="sidebar" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="~{modules/widget-author :: widget-author}"></th:block>
+  <th:block th:replace="~{modules/widget-tags :: widget-tags}"></th:block>
+</th:block>

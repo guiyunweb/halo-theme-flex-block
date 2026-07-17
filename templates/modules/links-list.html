@@ -1,4 +1,4 @@
-<div class="body-container" xmlns:th="http://www.thymeleaf.org">
+<div class="body-container" th:fragment="links-list" xmlns:th="http://www.thymeleaf.org">
   <div class="content-container layout-block article-list">
     <th:block th:each="group : ${groups}">
       <div class="article-item layout-padding" th:each="link : ${group.links}">

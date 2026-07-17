@@ -8,7 +8,7 @@
 <div class="root-container">
   <header class="header-container post">
     <div class="post-image" th:style="|background-image:url(${theme.config.general.link_cover})|"></div>
-    <th:block th:replace="~{modules/nav}"></th:block>
+    <th:block th:replace="~{modules/nav :: nav}"></th:block>
     <div class="header-content">
       <div class="post-text layout-block layout-padding">
         <h1 class="title-wrap">友情链接</h1>
@@ -27,7 +27,7 @@
     </section>
   </div>
 
-  <th:block th:replace="~{modules/links-list}"></th:block>
+  <th:block th:replace="~{modules/links-list :: links-list}"></th:block>
 
   <th:block th:replace="~{layout :: body-tail}"></th:block>
 </div>

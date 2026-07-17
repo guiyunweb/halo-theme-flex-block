@@ -8,7 +8,7 @@
 <div class="root-container">
   <header class="header-container">
     <div class="post-image" th:style="|background-image:url(${theme.config.general.home_cover})|"></div>
-    <th:block th:replace="~{modules/nav}"></th:block>
+    <th:block th:replace="~{modules/nav :: nav}"></th:block>
     <div class="header-content">
       <div class="post-text layout-block layout-padding">
         <h1 class="title-wrap" th:text="${site.title}"></h1>
@@ -16,7 +16,7 @@
     </div>
   </header>
 
-  <th:block th:replace="~{modules/post-list}"></th:block>
+  <th:block th:replace="~{modules/post-list :: post-list}"></th:block>
 
   <th:block th:replace="~{modules/pagination :: pagination(
     context = '/',
