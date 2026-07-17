@@ -1,4 +1,4 @@
-<nav class="navbar" th:fragment="nav" th:with="menu = ${menuFinder.getDefault()}" xmlns:th="http://www.thymeleaf.org">
+<nav class="navbar" th:fragment="nav" th:with="menu = ${menuFinder.getPrimary()}" xmlns:th="http://www.thymeleaf.org">
   <div class="navbar-content">
     <!-- logo -->
     <div class="navbar-logo">
@@ -13,7 +13,7 @@
       </div>
       <ul class="navbar-list">
         <li class="navbar-list-item" th:each="item : ${menu?.menuItems}">
-          <a th:href="${item.status.href}" th:target="${item.spec.target}" th:text="${item.spec.displayName}"></a>
+          <a th:href="${item.status.href}" th:target="${item.spec.target?.value}" th:text="${item.status.displayName}"></a>
         </li>
       </ul>
     </div>
