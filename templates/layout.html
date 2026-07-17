@@ -16,11 +16,11 @@
 </th:block>
 
 <!-- 文章/页面头部需要的代码高亮 CSS/JS + 字体 -->
-<th:block th:fragment="code-head">
+<th:block th:fragment="code-head" th:with="fontUrl=${#theme.assets('/JetBrainsMono-ExtraBold.woff2')}">
   <link rel="stylesheet" th:href="${#theme.assets('/css/monokai-sublime.min.css')}" />
   <script th:src="${#theme.assets('/js/highlight.min.js')}"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <style th:utext="'@font-face { font-family: \"JetBrainsMono-ExtraBold\"; src: url(\"' + ${#theme.assets('/JetBrainsMono-ExtraBold.woff2')} + '\") format(\"woff\"); }'"></style>
+  <style th:utext="|@font-face { font-family: JetBrainsMono-ExtraBold; src: url(${fontUrl}) format(woff); }|"></style>
 </th:block>
 
 <!-- 页脚 -->
