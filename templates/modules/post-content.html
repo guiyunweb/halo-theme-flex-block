@@ -38,8 +38,7 @@
         </div>
       </nav>
 
-      <section class="page-message-container layout-padding"
-               th:if="${haloCommentEnabled and post.spec.allowComment}">
+      <section class="page-message-container layout-padding" th:if="${haloCommentEnabled}">
         <h2>评论</h2>
         <div id="comment">
           <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
